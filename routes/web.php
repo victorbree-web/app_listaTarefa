@@ -15,15 +15,15 @@ use Illuminate\Support\Facades\Route;
 
 use App\HTTP\Controllers\EventController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
-Route::get('/index', [EventController::class,'index']);
-
+Route::get('/', [EventController::class,'index']);
 Route::get('/nova_tarefa', [EventController::class,'nova_tarefa']);
-
 Route::get('/todas_tarefas', [EventController::class,'todas_tarefas']);
+
+Route::post('/criar_tarefa', [EventController::class,'store']);
+
+Route::delete('/destroy_tarefa/{id}', [EventController::class,'destroy']);
+
 
 
 
