@@ -2,6 +2,7 @@
 
 @section('title', ('Tarefas Pendentes'))
 
+
 @section('content')
 
 
@@ -23,13 +24,12 @@
 								<hr />
 								@foreach($tarefas as $tarefa)
 
+								@if($tarefa->status == 0)
 								<div class="row mb-3 d-flex align-items-center tarefa">
 									<div class="col-sm-6">{{$tarefa->nome}}</div>
 									<div class="col-sm-3"><small>
 									@if($tarefa->status == 0)
-										pendente 
-									@else
-										realizada
+										pendente 	
 									@endif
 									</small></div>
 									@if ($tarefa->status == 0)
@@ -38,25 +38,18 @@
 										<form action="/destroy_tarefa/{{$tarefa->id}}" method="post">
 											@csrf
 											@method('DELETE')
-											<button type="submit" class="btn btn-danger delete-btn fas fa-trash-alt fa-sm"></button>
+											<button type="submit" class="btn btn-danger  fas fa-trash-alt fa-sm"></button>
 										</form>
 
-										<a href="#" class="fas fa-edit fa-lg text-info"></a>
-										<a href="#" class="fas fa-check-square fa-lg text-success"></a>
-									</div>
-									@elseif($tarefa->status == 1)
-									<div class="col-sm-3 mt-2 d-flex justify-content-between">
-
-									<form action="/destroy_tarefa/{{$tarefa->id}}" method="post">
-											@csrf
-											@method('DELETE')
-											<button type="submit" class="btn btn-danger delete-btn fas fa-trash-alt fa-sm"></button>
-										</form>
+										
+										<a href="/event/edit/{{ $tarefa->id }}" class="btn btn-info fas fa-edit fa-sm text-light"></a>
+									
 										
 									</div>
+
 									@endif
 								</div>
-
+								@endif
 								@endforeach
 
 							</div>

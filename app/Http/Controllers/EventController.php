@@ -37,14 +37,28 @@ class EventController extends Controller
 
         $tarefa->save();
 
-        return redirect('/index');
+        return redirect('/');
 
     }
 
     public function destroy($id){
         Tarefa::findOrFail($id)->delete();
 
-        return redirect('/index')->with('msg', 'tarefa deletada com sucesso');       
+        return redirect('/')->with('msg', 'tarefa deletada com sucesso');       
+
+    }
+
+    public function edit($id){
+        $event = Tarefa::findOrFail($id);
+
+        return view('event.edit', ['event' => $event]);
+    }
+
+    public function update(Request $request){
+
+        Tarefa::findOrFail($request->id)->update($request->all());    
+
+        return redirect('/');
 
     }
 }

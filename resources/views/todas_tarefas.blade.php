@@ -32,8 +32,7 @@
 											<button type="submit" class="btn btn-danger delete-btn fas fa-trash-alt fa-sm"></button>
 										</form>
 
-										<a href="#" class="fas fa-edit fa-lg text-info"></a>
-										<a href="#" class="fas fa-check-square fa-lg text-success"></a>
+										<a href="/event/edit/{{ $tarefa->id }}" class="btn btn-info fas fa-edit fa-sm text-light"></a>
 									</div>
 									@elseif($tarefa->status == 1)
 									<div class="col-sm-3 mt-2 d-flex justify-content-between">
